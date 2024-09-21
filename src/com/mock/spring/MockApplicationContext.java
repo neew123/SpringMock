@@ -6,6 +6,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MockApplicationContext {
@@ -16,6 +17,9 @@ public class MockApplicationContext {
 
     //单例池
     private ConcurrentHashMap<String,Object> singletonObjects = new ConcurrentHashMap<>();
+
+    //存储BeanPostProcessor
+    private ArrayList<BeanPostProcessor> postProcessors = new ArrayList<>();
 
     public MockApplicationContext(Class configClass) {
         this.configClass = configClass;
@@ -47,6 +51,14 @@ public class MockApplicationContext {
                             Class<?> aClass = classLoader.loadClass(className);
                             //判断这个类是否存在Component注解
                             if (aClass.isAnnotationPresent(Component.class)) {
+                                //判断这个类是否实现了BeanPostProcessor接口
+                                if(BeanPostProcessor.class.isAssignableFrom(aClass)){
+                                    Object instance = aClass.getConstructor().newInstance();
+                                    postProcessors.add((BeanPostProcessor)instance);
+
+                                }
+
+
                                 //获取bean的名字
                                 Component component = aClass.getAnnotation(Component.class);
                                 String beanName = component.value();
@@ -61,6 +73,7 @@ public class MockApplicationContext {
                                     Scope scope = aClass.getAnnotation(Scope.class);
                                     beanDefinition.setScope(scope.value());
                                 } else {
+                                    //默认单例
                                     beanDefinition.setScope("singleton");
                                 }
                                 // 将beanDefinition对象保存到map中
@@ -68,6 +81,14 @@ public class MockApplicationContext {
 
                             }
                         } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        } catch (InvocationTargetException e) {
+                            throw new RuntimeException(e);
+                        } catch (InstantiationException e) {
+                            throw new RuntimeException(e);
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        } catch (NoSuchMethodException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -93,7 +114,7 @@ public class MockApplicationContext {
         //反射获取构造方法来构建对象
         try {
             Object instance = clazz.getConstructor().newInstance();
-            //依赖注入简单版实现：给加了Autowired注解的属性进行注入
+            //依赖注入：给加了Autowired注解的属性进行注入
             for (Field f : clazz.getDeclaredFields()) { //获取类所有声明的字段，包括受保护的和私有的
                 if(f.isAnnotationPresent(Autowired.class)){
                     //绕开访问限制，访问受保护的和私有成员
@@ -102,12 +123,25 @@ public class MockApplicationContext {
                     f.set(instance,getBean(f.getName()));
                 }
             }
-            //依赖注入完成后，判断当前对象是否实现了BeanNameAware接口
-            //Aware 接口及其实现提供了一种灵活的方式来让 Bean 获得框架内部的重要资源和上下文信息。通过实现相应的 Aware 接口，
+            //回调Aware:Aware接口及其实现提供了一种灵活的方式来让 Bean 获得框架内部的重要资源和上下文信息。通过实现相应的 Aware 接口，
             // 可以在Bean初始化过程中自动获得这些资源，而不需要显式地进行依赖注入。
             if(instance instanceof BeanNameAware){
                 ((BeanNameAware) instance).setBeanName(beanName);
             }
+
+            //初始化前
+            for (BeanPostProcessor beanPostProcessor:postProcessors) {
+                beanPostProcessor.postProcessBeforeInitialization(beanName,instance);
+            }
+            //初始化：用于在所有属性被设置之后执行一些初始化逻辑
+            if(instance instanceof InitializingBean){
+                ((InitializingBean) instance).afterPropertiesSet();
+            }
+            //初始化后
+            for (BeanPostProcessor beanPostProcessor:postProcessors) {
+                beanPostProcessor.postProcessAfterInitialization(beanName,instance);
+            }
+
 
             return instance;
         } catch (InstantiationException e) {
