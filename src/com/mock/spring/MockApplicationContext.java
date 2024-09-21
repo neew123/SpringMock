@@ -1,7 +1,9 @@
 package com.mock.spring;
 
+import java.beans.Introspector;
 import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.concurrent.ConcurrentHashMap;
@@ -48,6 +50,10 @@ public class MockApplicationContext {
                                 //获取bean的名字
                                 Component component = aClass.getAnnotation(Component.class);
                                 String beanName = component.value();
+                                //如果Bean的名字为空，则需要默认生成Bean的名字:第一个字母小写
+                                if(beanName.equals("")){
+                                    beanName = Introspector.decapitalize(aClass.getSimpleName());
+                                }
                                 //Bean，Spring扫描的时候并不应该把对象创建出来，因为存在单例和多例bean。可以创建BeanDefinition对象
                                 BeanDefinition beanDefinition = new BeanDefinition();
                                 beanDefinition.setType(aClass);
@@ -87,6 +93,15 @@ public class MockApplicationContext {
         //反射获取构造方法来构建对象
         try {
             Object instance = clazz.getConstructor().newInstance();
+            //依赖注入简单版实现：给加了Autowired注解的属性进行注入
+            for (Field f : clazz.getDeclaredFields()) { //获取类所有声明的字段，包括受保护的和私有的
+                if(f.isAnnotationPresent(Autowired.class)){
+                    //绕开访问限制，访问受保护的和私有成员
+                    f.setAccessible(true);
+                    //给属性赋值，通过getBean方法从容器中找出这个Bean对象然后再赋值
+                    f.set(instance,getBean(f.getName()));
+                }
+            }
 
             return instance;
         } catch (InstantiationException e) {
