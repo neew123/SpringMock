@@ -2,6 +2,7 @@ package com.mock.spring;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -81,8 +82,22 @@ public class MockApplicationContext {
     }
 
     private Object createBean(String beanName,BeanDefinition beanDefinition){
+        //获取当前Bean对应的类
+        Class clazz = beanDefinition.getType();
+        //反射获取构造方法来构建对象
+        try {
+            Object instance = clazz.getConstructor().newInstance();
 
-        return null;
+            return instance;
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
         
     }
 
