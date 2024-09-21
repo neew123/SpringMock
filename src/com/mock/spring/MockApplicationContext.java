@@ -11,6 +11,9 @@ public class MockApplicationContext {
 
     private ConcurrentHashMap<String,BeanDefinition> beanDefinitonMap = new ConcurrentHashMap<>();
 
+    //单例池
+    private ConcurrentHashMap<String,Object> singletonObjects = new ConcurrentHashMap<>();
+
     public MockApplicationContext(Class configClass) {
         this.configClass = configClass;
         //扫描：1.获取扫描路径
@@ -61,15 +64,48 @@ public class MockApplicationContext {
                             throw new RuntimeException(e);
                         }
                     }
-
                 }
 
             }
         }
+
+        //创建所有的单例对象
+        for (String beanName : beanDefinitonMap.keySet()) {
+            BeanDefinition beanDefinition = beanDefinitonMap.get(beanName);
+            if(beanDefinition.getScope().equals("singleton")){
+                Object bean = createBean(beanName,beanDefinition);
+                singletonObjects.put(beanName,bean);
+            }
+
+        }
     }
+
+    private Object createBean(String beanName,BeanDefinition beanDefinition){
+
+        return null;
+        
+    }
+
 
     //getBean方法
     public Object getBean(String beanName) {
-        return null;
+        BeanDefinition beanDefinition = beanDefinitonMap.get(beanName);
+        if(beanDefinition == null){
+            throw new NullPointerException();
+        }else {
+            String scope = beanDefinition.getScope();//获取作用域
+            if(scope.equals("singleton")){
+                //单例：在Spring容器启动的时候就把所有的单例bean对象创建,保存在单例池，这样获取的时候直接从单例池获取
+                Object bean = singletonObjects.get(beanName);
+                if(bean == null){
+                    bean = createBean(beanName,beanDefinition);
+                    singletonObjects.put(beanName,bean);
+                }
+                return bean;
+            }else {
+                //多例
+                return createBean(beanName,beanDefinition);
+            }
+        }
     }
 }
