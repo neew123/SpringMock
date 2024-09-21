@@ -3,7 +3,7 @@ package com.mock.service;
 import com.mock.spring.*;
 
 @Component
-public class UserService implements BeanNameAware, InitializingBean {
+public class UserService implements BeanNameAware, InitializingBean, UserInterface {
 
     @Autowired
     private OrderService orderService;
@@ -12,7 +12,7 @@ public class UserService implements BeanNameAware, InitializingBean {
 
     private String attribute;
     public void test(){
-        System.out.println(orderService);
+        System.out.println("userService test");;
     }
 
     @Override

@@ -131,7 +131,7 @@ public class MockApplicationContext {
 
             //初始化前
             for (BeanPostProcessor beanPostProcessor:postProcessors) {
-                beanPostProcessor.postProcessBeforeInitialization(beanName,instance);
+                instance = beanPostProcessor.postProcessBeforeInitialization(beanName,instance);
             }
             //初始化：用于在所有属性被设置之后执行一些初始化逻辑
             if(instance instanceof InitializingBean){
@@ -139,7 +139,7 @@ public class MockApplicationContext {
             }
             //初始化后
             for (BeanPostProcessor beanPostProcessor:postProcessors) {
-                beanPostProcessor.postProcessAfterInitialization(beanName,instance);
+                instance = beanPostProcessor.postProcessAfterInitialization(beanName,instance);
             }
 
 
