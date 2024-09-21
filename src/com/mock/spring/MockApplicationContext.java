@@ -102,6 +102,12 @@ public class MockApplicationContext {
                     f.set(instance,getBean(f.getName()));
                 }
             }
+            //依赖注入完成后，判断当前对象是否实现了BeanNameAware接口
+            //Aware 接口及其实现提供了一种灵活的方式来让 Bean 获得框架内部的重要资源和上下文信息。通过实现相应的 Aware 接口，
+            // 可以在Bean初始化过程中自动获得这些资源，而不需要显式地进行依赖注入。
+            if(instance instanceof BeanNameAware){
+                ((BeanNameAware) instance).setBeanName(beanName);
+            }
 
             return instance;
         } catch (InstantiationException e) {
