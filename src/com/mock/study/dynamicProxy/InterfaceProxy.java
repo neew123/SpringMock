@@ -11,7 +11,7 @@ import java.lang.reflect.Proxy;
  */
 
 interface MyInterface{
-    void doSomething();
+    public void doSomething();
 }
 
 
@@ -40,8 +40,8 @@ public class InterfaceProxy implements InvocationHandler {
 class DynamicProxyTest {
     public static void main(String[] args) {
         MyRealObject myRealObject = new MyRealObject();
-        //第二种实现方式
-        MyInterface proxyInstance = (MyInterface)Proxy.newProxyInstance(MyInterface.class.getClassLoader(), new Class[]{MyInterface.class}, new InvocationHandler() {
+        //第二种实现方式  第一个参数或者为new Class[]{MyInterface.class}
+        MyInterface proxyInstance = (MyInterface)Proxy.newProxyInstance(MyRealObject.class.getClassLoader(), MyRealObject.class.getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("before method call.");
