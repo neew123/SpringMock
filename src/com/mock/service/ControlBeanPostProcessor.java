@@ -14,7 +14,9 @@ public class ControlBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(String beanName, Object bean) {
         if(beanName.equals("userService")){
             System.out.println("userService BeforeInitialization");
-          //控制userService对象
+            //控制userService对象
+
+            //调用userService的iniAdmin方法对管理员进行初始化
         }
 
         return bean;

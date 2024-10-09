@@ -2,8 +2,25 @@ package com.mock.service;
 
 import com.mock.spring.Autowired;
 import com.mock.spring.MockApplicationContext;
+import com.mock.spring.PostConstruct;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * UserService.class --> 无参构造方法(推断构造方法) --> 普通对象 --> 依赖注入 --> 初始化前(@PostConstruct) ---> 初始化(afterPropertiesSet) --->
+ * 初始化后(AOP) ---> 代理对象(没有对代理对象进行依赖注入)---> 放入Map --> Bean对象
+ *
+ * （1）推断构造方法：如果有多个构造方法，Spring会去找默认无参构造方法，如果没有，则抛出异常（解决办法：在相应的构造方法上加上@Autowired注解）；
+ * 如果只有一个构造方法，Spring就会用那一个。
+ *    如构造方法有参数：public UserService(OrderService orderService){}; 这时Spring会首先从单例池里面找OrderService对象，如果没有，则new一个OrderService对象.
+ * 这时可能会出现循环依赖。找OrderService对象的逻辑：先根据类型ByType查找，如果没有，则根据名称ByName查找。
+ *
+ * （2）依赖注入方式：同（1）中的先根据类型ByType查找，如果没有，则根据名称ByName查找。
+ *
+ * （3）代理对象：UserServiceProxy对象 --> UserService代理对象  --> UserService代理对象的target属性赋值为UserService对象
+ *
+ * */
 
 public class Test {
 
@@ -23,6 +40,16 @@ public class Test {
                     field.setAccessible(true);
                     field.set(userService1,context.getBean(field.getName()));
                 } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //方法在bean对象初始化前调用
+        for(Method method:userService1.getClass().getDeclaredMethods()){
+            if(method.isAnnotationPresent(PostConstruct.class)){
+                try {
+                    method.invoke(userService1,null);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

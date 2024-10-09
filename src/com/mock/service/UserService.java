@@ -8,9 +8,18 @@ public class UserService implements BeanNameAware, InitializingBean, UserInterfa
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private User admin;
+
     private String beanName;
 
     private String attribute;
+
+
+    @PostConstruct
+    public void iniAdmin(){
+        //在UserService初始化前，这里获取admin对象需要从数据库获取。
+    }
     public void test(){
         System.out.println("userService test");;
     }
