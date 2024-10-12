@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 /**
  * UserService.class --> 无参构造方法(推断构造方法) --> 普通对象 --> 依赖注入 --> 初始化前(@PostConstruct) ---> 初始化(afterPropertiesSet) --->
- * 初始化后(AOP) ---> 代理对象(没有对代理对象进行依赖注入)---> 放入Map --> Bean对象
+ * 初始化后(AOP) ---> 代理对象(没有对代理对象属性进行依赖注入，代理对象加入target属性来解决)---> 放入Map --> Bean对象
  *
  * （1）推断构造方法：如果有多个构造方法，Spring会去找默认无参构造方法，如果没有，则抛出异常（解决办法：在相应的构造方法上加上@Autowired注解）；
  * 如果只有一个构造方法，Spring就会用那一个。
