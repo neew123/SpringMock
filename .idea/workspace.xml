@@ -4,20 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80018734-44d8-4e71-af1c-7b628de2df3e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/mock/service/MockAppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/mock/service/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/mock/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/mock/spring/Component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/mock/spring/ComponentScan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/mock/spring/MockApplicationContext.java" afterDir="false" />
+    <list default="true" id="80018734-44d8-4e71-af1c-7b628de2df3e" name="Changes" comment="Spring三级缓存">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpringMybatis/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpringMybatis/src/main/java/com/study/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpringMybatis/src/main/java/com/study/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpringMybatis/src/main/java/com/study/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpringMybatis/src/main/java/com/study/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringMock.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpringMock.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -33,20 +53,51 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "17",
     "last_opened_file_path": "/Users/yuanmengli/IdeaProjects/SpringMock/src",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.tools"
+    "project.structure.side.proportion": "0.35747126",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mock.spring" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.com.study.Test">
+    <configuration name="DynamicProxyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mock.study.dynamicProxy.DynamicProxyTest" />
+      <module name="SpringMock" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mock.study.dynamicProxy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mock.study.dynamicProxy.Main" />
+      <module name="SpringMock" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mock.study.dynamicProxy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.mock.service.Test" />
       <module name="SpringMock" />
@@ -60,8 +111,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="com.study.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.study.Test" />
+      <module name="SpringMybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.study.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.study.Test" />
+        <item itemvalue="Application.DynamicProxyTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -74,8 +141,143 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726840406562</updated>
-      <workItem from="1726840407767" duration="389000" />
+      <workItem from="1726840407767" duration="790000" />
+      <workItem from="1726841208980" duration="22000" />
+      <workItem from="1726841238187" duration="883000" />
+      <workItem from="1726844595406" duration="2395000" />
+      <workItem from="1726880193250" duration="15452000" />
+      <workItem from="1726985947226" duration="7387000" />
+      <workItem from="1727059154219" duration="622000" />
+      <workItem from="1728007515784" duration="598000" />
+      <workItem from="1728039348288" duration="3699000" />
+      <workItem from="1728098943866" duration="41000" />
+      <workItem from="1728190266316" duration="4324000" />
+      <workItem from="1728443116446" duration="11761000" />
+      <workItem from="1728698794031" duration="8098000" />
+      <workItem from="1728895717067" duration="2557000" />
+      <workItem from="1728958954260" duration="672000" />
+      <workItem from="1729149551647" duration="1002000" />
     </task>
+    <task id="LOCAL-00001" summary="Spring扫描底层实现">
+      <created>1726840841017</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726840841017</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Spring扫描底层实现">
+      <created>1726841055115</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726841055115</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Spring扫描底层实现">
+      <created>1726846951642</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726846951642</updated>
+    </task>
+    <task id="LOCAL-00004" summary="GetBean方法底层实现">
+      <created>1726892598177</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726892598177</updated>
+    </task>
+    <task id="LOCAL-00005" summary="模拟创建Bean方法底层实现">
+      <created>1726893343395</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726893343395</updated>
+    </task>
+    <task id="LOCAL-00006" summary="模拟创建Bean方法底层实现">
+      <created>1726893367886</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726893367886</updated>
+    </task>
+    <task id="LOCAL-00007" summary="依赖注入方法底层实现">
+      <created>1726905664983</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726905664983</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Aware回调机制">
+      <created>1726928657016</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726928657016</updated>
+    </task>
+    <task id="LOCAL-00009" summary="BeanPostProcessor实现">
+      <created>1726933009238</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726933009238</updated>
+    </task>
+    <task id="LOCAL-00010" summary="AOP- JDK实现方式">
+      <created>1726937062069</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726937062069</updated>
+    </task>
+    <task id="LOCAL-00011" summary="动态代理的两种实现方式">
+      <created>1727012810724</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727012810724</updated>
+    </task>
+    <task id="LOCAL-00012" summary="动态代理的两种实现方式">
+      <created>1727013830242</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727013830242</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Bean创建和依赖注入的原理">
+      <created>1728204537160</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728204537160</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Spring AOP原理">
+      <created>1728477890668</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728477890668</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Configuration注解">
+      <created>1728723534789</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728723534789</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Configuration注解">
+      <created>1728723558927</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728723558927</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Spring三级缓存">
+      <created>1728915502668</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1728915502668</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +293,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Spring扫描底层实现" />
+    <MESSAGE value="GetBean方法底层实现" />
+    <MESSAGE value="模拟创建Bean方法底层实现" />
+    <MESSAGE value="依赖注入方法底层实现" />
+    <MESSAGE value="Aware回调机制" />
+    <MESSAGE value="BeanPostProcessor实现" />
+    <MESSAGE value="AOP- JDK实现方式" />
+    <MESSAGE value="动态代理的两种实现方式" />
+    <MESSAGE value="Bean创建和依赖注入的原理" />
+    <MESSAGE value="Spring AOP原理" />
+    <MESSAGE value="Configuration注解" />
+    <MESSAGE value="Spring三级缓存" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spring三级缓存" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
